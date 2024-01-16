@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<!-- 구글 : 마우스휠 업다운
+
+ https://blog.naver.com/designerkhs/222504447240
+  
+    -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>창해에탄올</title>
+    <!-- og대체 -->
+
+    <!-- 스와이퍼 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
+    <link rel="stylesheet" href="css/fp_style.css">
+    <link rel="stylesheet" href="css/fp_m_style.css">
+
+    <!-- aos -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery.fullPage.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+    <script type="text/javascript">
+        var deleteLog = false;
+        var aosChk = 0;
+
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+                verticalCentered: false,
+                css3: false,
+                anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+                menu: '#menu',
+                /* onLeave는 스크롤 땡기자 마자 실행될 스크립트 */
+                onLeave: function(index, nextIndex, direction) {
+                    if (nextIndex == 3) {
+                        $("header").addClass("bb");
+                        $("header h1 a").addClass("hoveri");
+                        $(".gnbset > li").addClass("hover");
+                        $(".lang ul li").addClass("hover1")
+                        $(".lang a").addClass("hover2");
+                        $(".m_menu").addClass("mech");
+                    } else if (nextIndex == 4) {
+                        $("header").addClass("bb");
+                        $("header h1 a").addClass("hoveri");
+                        $(".gnbset > li").addClass("hover");
+                        $(".lang ul li").addClass("hover1")
+                        $(".lang a").addClass("hover2");
+                        $(".m_menu").addClass("mech");
+                    } else if (nextIndex == 6) {
+                        $("header").addClass("bb");
+                        $("header h1 a").addClass("hoveri");
+                        $(".gnbset > li").addClass("hover");
+                        $(".lang ul li").addClass("hover1")
+                        $(".lang a").addClass("hover2");
+                        $(".m_menu").addClass("mech");
+                    } else if (nextIndex == 7) {
+                        $("header").addClass("bb");
+                        $("header h1 a").addClass("hoveri");
+                        $(".gnbset > li").addClass("hover");
+                        $(".lang ul li").addClass("hover1")
+                        $(".lang a").addClass("hover2");
+                        $(".m_menu").addClass("mech");
+                    } else if (nextIndex == 8) {
+                        $("header").addClass("bb");
+                        $("header h1 a").addClass("hoveri");
+                        $(".gnbset > li").addClass("hover");
+                        $(".lang ul li").addClass("hover1")
+                        $(".lang a").addClass("hover2");
+                        $(".m_menu").addClass("mech");
+                    } else {
+                        $("header").removeClass("bb");
+                        $("header h1 a").removeClass("hoveri");
+                        $(".gnbset > li").removeClass("hover");
+                        $(".lang ul li").removeClass("hover1")
+                        $(".lang a").removeClass("hover2");
+                        $(".m_menu").removeClass("mech");
+                    }
+
+                    $('.slide [data-aos]').each(function() {
+                        $(this).removeClass("aos-animate");
+                    });
+
+                },
+                onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex) {
+                    if (deleteLog) {
+                        $('#callbacksDiv').html('');
+                    }
+                    $('#callbacksDiv').append('<p>onSlideLeave - anchorLink:' + anchorLink + " index:" + index + " slideIndex:" + slideIndex + " direction:" + direction + " nextSlideIndex:" + nextSlideIndex + '</p>');
+                    console.log("onSlideLeave--" + "anchorLink: " + anchorLink + " index: " + index + " slideIndex: " + slideIndex + " direction: " + direction);
+                },
+                afterRender: function() {
+                    $('#callbacksDiv').append('<p>afterRender</p>');
+                    console.log("afterRender");
+                },
+                afterResize: function() {
+                    $('#callbacksDiv').append('<p>afterResize</p>');
+                    console.log("afterResize");
+                },
+                afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+                    $('#callbacksDiv').append('<p>afterSlideLoad - anchorLink:' + anchorLink + " index:" + index + " slideAnchor:" + slideAnchor + " slideIndex:" + slideIndex + '</p>');
+                    deleteLog = true;
+                    console.log("afterSlideLoad--" + "anchorLink: " + anchorLink + " index: " + index + " slideAnchor: " + slideAnchor + " slideIndex: " + slideIndex);
+                    console.log("----------------");
+                    $('.slide.active [data-aos]').each(function() {
+                        $(this).addClass("aos-animate");
+                    });
+                },
+                /* 땡기고 나서 실행될 스크립트는 afterLoad */
+                afterLoad: function(anchorLink, index) {
+                    if (aosChk == 0) {
+                        aosChk = 1;
+                    } else {
+                        $('.section.active [data-aos]').each(function() {
+                            $(this).addClass("aos-animate");
+                        });
+                    }
+                    if (index == 3) {
+                        $("#section2 > p").addClass("slidele");
+                    } else {
+                        $("#section2 > p").removeClass("slidele");
+                    }
+                }
+            });
+
+            var bw = $("body").width()
+
+
+            $(".gnbset").hover(
+                function() {
+                    $(".snbmenu").css({
+                        "display": "block"
+                    });
+                    $("header h1 a").addClass("hoveri");
+                    $(".gnbset > li").addClass("hover");
+                    $("header .wrap").addClass("line");
+                    $(".bkw").slideDown(300);
+                    $(".lang ul li").addClass("hover1")
+                    $(".lang a").addClass("hover2");
+                },
+                function() {
+                    $(".snbmenu").css({
+                        "display": "none"
+                    });
+                    $("header h1 a").removeClass("hoveri");
+                    $(".gnbset > li").removeClass("hover");
+                    $("header .wrap").removeClass("line");
+                    $(".bkw").slideUp(300);
+                    $(".lang ul li").removeClass("hover1")
+                    $(".lang a").removeClass("hover2");
+                }
+            )
+
+            $(".lang li a").click(function() {
+                $(".language").slideToggle(300);
+                $(this).toggleClass("sup");
+            });
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+
+    <!-- 메뉴로 사용가능
+<ul id="menu">
+	<li data-menuanchor="firstPage"><a href="#firstPage">First slide</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+</ul>
+-->
+
+    <header>
+        <div class="bkw"></div>
+        <div class="wrap">
+            <h1>
+                <a href="fullpage.html"></a>
+            </h1>
+            <div class="gnb pc">
+                <ul class="gnbset">
+                    <li>
+                        <a href="#">회사소개</a>
+                        <ul class="snbmenu">
+                            <li>
+                                <a href="fullpage2.html">회사개요</a>
+                            </li>
+                            <li>
+                                <a href="#">인사말</a>
+                            </li>
+                            <li>
+                                <a href="#">R&amp;D</a>
+                            </li>
+                            <li>
+                                <a href="#">관계사</a>
+                            </li>
+                            <li>
+                                <a href="#">사업장</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">사업영역</a>
+                        <ul class="snbmenu">
+                            <li>
+                                <a href="fullpage3.html">주정</a>
+                            </li>
+                            <li>
+                                <a href="#">주정부산물</a>
+                            </li>
+                            <li>
+                                <a href="#">바이오소재</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">지속가능경영</a>
+                        <ul class="snbmenu">
+                            <li>
+                                <a href="#">EHS 경영시스템</a>
+                            </li>
+                            <li>
+                                <a href="#">품질경영</a>
+                            </li>
+                            <li>
+                                <a href="#">윤리경영</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">투자정보</a>
+                        <ul class="snbmenu">
+                            <li>
+                                <a href="#">공시정보</a>
+                            </li>
+                            <li>
+                                <a href="#">주가정보</a>
+                            </li>
+                            <li>
+                                <a href="#">재무정보</a>
+                            </li>
+                            <li>
+                                <a href="#">전자공고</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">홍보센터</a>
+                        <ul class="snbmenu">
+                            <li>
+                                <a href="#">소식</a>
+                            </li>
+                            <li>
+                                <a href="#">CI</a>
+                            </li>
+                            <li>
+                                <a href="#">CSR활동</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="menuM mob">
+                <ul>
+                    <li>
+                        <a href="#">회사소개</a>
+                        <ul class="snbmenu2">
+                            <li>
+                                <a href="#">회사개요</a>
+                            </li>
+                            <li>
+                                <a href="#">인사말</a>
+                            </li>
+                            <li>
+                                <a href="#">R&amp;D</a>
+                            </li>
+                            <li>
+                                <a href="#">관계사</a>
+                            </li>
+                            <li>
+                                <a href="#">사업장</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">사업영역</a>
+                        <ul class="snbmenu2">
+                            <li>
+                                <a href="#">주정</a>
+                            </li>
+                            <li>
+                                <a href="#">주정부산물</a>
+                            </li>
+                            <li>
+                                <a href="#">바이오소재</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">지속가능경영</a>
+                        <ul class="snbmenu2">
+                            <li>
+                                <a href="#">EHS 경영시스템</a>
+                            </li>
+                            <li>
+                                <a href="#">품질경영</a>
+                            </li>
+                            <li>
+                                <a href="#">윤리경영</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">투자정보</a>
+                        <ul class="snbmenu2">
+                            <li>
+                                <a href="#">공시정보</a>
+                            </li>
+                            <li>
+                                <a href="#">주가정보</a>
+                            </li>
+                            <li>
+                                <a href="#">재무정보</a>
+                            </li>
+                            <li>
+                                <a href="#">전자공고</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">홍보센터</a>
+                        <ul class="snbmenu2">
+                            <li>
+                                <a href="#">소식</a>
+                            </li>
+                            <li>
+                                <a href="#">CI</a>
+                            </li>
+                            <li>
+                                <a href="#">CSR활동</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="langM">
+                    <ul>
+                        <li>
+                            <a href="#">KOR</a>
+                        </li>
+                        <li>
+                            <a href="#">ENG</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#" class="close"></a>
+            </div>
+            <div class="lang pc">
+                <ul>
+                    <li>
+                        <a href="#">KOR</a>
+                        <ul class="language">
+                            <li>
+                                <a href="#">KOR</a>
+                            </li>
+                            <li>
+                                <a href="#">ENG</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <a href="#" class="m_menu"></a>
+        </div>
+    </header>
+    <div id="fullpage">
+        <div class="section " id="section0">
+            <div class="bg">
+                <video muted autoplay loop>
+                    <source src="https://chethanol.com/homek/assets/mov/movie.mp4" loop="" type="video/mp4">
+                </video>
+                <div class="wrap">
+                    <div class="tit">
+                        <strong class="cg" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500" data-aos-delay="500">
+                            <span>C</span>
+                            <span>H</span>
+                            <span>A</span>
+                            <span>N</span>
+                            <span>G</span>
+                            <span>H</span>
+                            <span>A</span>
+                            <span>E</span>
+                        </strong>
+                        <b data-aos="fade-up" data-aos-duration="3000" data-aos-delay="700">ETHANOL</b>
+                        <p data-aos="fade-up" data-aos-duration="3000" data-aos-delay="900">FORM NATURE TO THE FUTURE</p>
+                    </div>
+                    <div class="mouse">
+                        <span></span>
+                        <p>SCROLL DOWN</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div id="sw1" class="swiper-slide">
+                        <div class="wrapsec">
+                            <div class="swtit">
+                                <h3 data-aos="fade-up" data-aos-duration="3000">LEADER</h3>
+                                <p data-aos="fade-up" data-aos-duration="3000" data-aos-delay="500">축적된 노하우와 검증된 기술력으로<br>국내 주정업계를 이글어가고 있습니다.</p>
+                                <a href="#" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="800">MORE VIEW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sw2" class="swiper-slide">
+                        <div class="wrapsec">
+                            <div class="swtit">
+                                <h3 data-aos="fade-up" data-aos-duration="3000">INNOVATION</h3>
+                                <p data-aos="fade-up" data-aos-duration="3000" data-aos-delay="500">에탄올 주정을 넘어 바이오 소재까지<br>창해의 응용기술을 통해 새로운 세상이 <br class="mob">현실이 됩니다.</p>
+                                <a href="#" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="800">MORE VIEW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sw3" class="swiper-slide">
+                        <div class="wrapsec">
+                            <div class="swtit">
+                                <h3 data-aos="fade-up" data-aos-duration="3000">HUMANISM</h3>
+                                <p data-aos="fade-up" data-aos-duration="3000" data-aos-delay="500">나눔경영, 상생과 나눔을 통해<br>사회적 가치를 창출합니다.</p>
+                                <a href="#" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="800">MORE VIEW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+        </div>
+        <div class="section" id="section2">
+            <p>CHANGHAE</p>
+            <div class="wrapsec">
+                <div class="cp">
+                    <h3 data-aos="fade-up" data-aos-duration="3000">COMPANY</h3>
+                    <ul>
+                        <li data-aos="fade-up" data-aos-duration="3000" data-aos-delay="300">
+                            <div class="cpbox">
+                                <div class="imgbox">
+                                    <img src="images1/img_company01.png" alt="pc버전" class="pc">
+                                    <img src="images1/img_company01_mo.png" alt="mob버전" class="mob">
+                                </div>
+                                <div class="cptit">
+                                    <p>주정업계 1위</p>
+                                    <span>2020년 생산 기준<br>발효주정 26,078 KL<br>정제주정 39,912 KL</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li data-aos="fade-up" data-aos-duration="3000" data-aos-delay="500">
+                            <div class="cpbox">
+                                <div class="imgbox">
+                                    <img src="images1/img_company02.png" alt="pc버전" class="pc">
+                                    <img src="images1/img_company02_mo.png" alt="mob버전" class="mob">
+                                </div>
+                                <div class="cptit">
+                                    <p>축적된 노하우</p>
+                                    <span>자체 설계한 자동화 <br class="mob">첨단 공정 시스템</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li data-aos="fade-up" data-aos-duration="3000" data-aos-delay="800">
+                            <div class="cpbox">
+                                <div class="imgbox">
+                                    <img src="images1/img_company03.png" alt="pc버전" class="pc">
+                                    <img src="images1/img_company03_mo.png" alt="mob버전" class="mob">
+                                </div>
+                                <div class="cptit">
+                                    <p>나눔경영</p>
+                                    <span>상생과 나눔을 통한 <br class="mob">사회적 가치 창출</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section3">
+            <div class="wrapsec">
+                <div class="scetit">
+                    <h3 data-aos="fade-up" data-aos-duration="3000">BUSINESS</h3>
+                    <ul data-aos="fade-up" data-aos-duration="3000" data-aos-delay="500">
+                        <li class="adb">
+                            <dl>
+                                <dt>주정</dt>
+                                <dd class="gh">HACCP 인증된 제조공정을<br>통한 고품질 주정 생산</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt>부산물 제조/판매</dt>
+                                <dd>주정박,탄산가스,CDS<br>제조 및 판매</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt>바이오 소재</dt>
+                                <dd>사업 다각화를 통한<br>미래가치 창출</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                    <div class="vidbox" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="1000">
+                        <video muted autoplay loop class="vid1 von">
+                            <source src="http://chethanol.com/homek/assets/mov/busi01.mp4" loop="infinite" type="video/mp4">
+                        </video>
+                        <video muted autoplay loop class="vid2">
+                            <source src="http://chethanol.com/homek/assets/mov/busi02.mp4" loop="infinite" type="video/mp4">
+                        </video>
+                        <video muted autoplay loop class="vid3">
+                            <source src="http://chethanol.com/homek/assets/mov/busi03.mp4" loop="infinite" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section4">
+            <div class="wrapsec">
+                <div class="sec4vs">
+                    <h3 data-aos="fade-up" data-aos-duration="3000">SUSTAINABILITY</h3>
+                    <div class="sec4flexbox" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="800">
+                        <div class="sec4tit">
+                            <p>지속가능한 사회,<br>지속가능한 자연을 위한<br>창해에탄올의<br>끊임없는 노력</p>
+                            <em>물의 낮은 곳으로 흘러<br>조용히 빈곳을 메우듯<br>창해에탄올은 보이지 않는 곳에서<br>더 나은 세상을 위해<br>움직이고 있습니다.</em>
+                        </div>
+                        <div class="sec4imgbox">
+                            <ul>
+                                <li>
+                                    <div class="imgbox4">
+                                        <div class="imghov">
+                                            <img src="images1/img_sust01.png" alt="신뢰">
+                                            <div class="hoverp">
+                                                <p>최상의 품질을 위해<br>엄격한 기준으로<br>철저하게 관리합니다.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <strong>신뢰</strong>
+                                    <span>Trust</span>
+                                </li>
+                                <li>
+                                    <div class="imgbox4">
+                                        <img src="images1/img_sust02.png" alt="친환경">
+                                        <div class="hoverp">
+                                            <p>우리 가족과 모두를<br>생각하는 그린경영</p>
+                                        </div>
+                                    </div>
+                                    <strong>친환경</strong>
+                                    <span>Eco-friendly</span>
+                                </li>
+                                <li>
+                                    <div class="imgbox4">
+                                        <img src="images1/img_sust03.png" alt="윤리경영">
+                                        <div class="hoverp">
+                                            <p>투명한 경영으로<br>고객과 사회에<br>진실합니다.</p>
+                                        </div>
+                                    </div>
+                                    <strong>윤리경영</strong>
+                                    <span>Ethical Management</span>
+                                </li>
+                                <li>
+                                    <div class="imgbox4">
+                                        <img src="images1/img_sust04.png" alt="나눔">
+                                        <div class="hoverp">
+                                            <p>나눔을 통한<br>상생과 변화로<br>사회에 공헌합니다.</p>
+                                        </div>
+                                    </div>
+                                    <strong>나눔</strong>
+                                    <span>Sharing</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section5">
+            <div class="wrapsec">
+                <div class="sec5tit">
+                    <h3 data-aos="fade-up" data-aos-duration="3000">NEWS</h3>
+                    <div class="btnpn">
+                        <a href="#" class="prev"></a>
+                        <a href="#" class="next"></a>
+                    </div>
+                    <div class="frame">
+                        <ul>
+                            <li data-aos="fade-up" data-aos-duration="3000" data-aos-delay="300">
+                                <span class="tnam">CSR활동</span>
+                                <span class="date">2021.12.03</span>
+                                <p>(주)창해에탄올 관내 사랑의 나눔 행사 1,000만원 기부</p>
+                                <a href="#">READ MORE</a>
+                            </li>
+                            <li data-aos="fade-up" data-aos-duration="3000" data-aos-delay="500">
+                                <span class="tnam">CSR활동</span>
+                                <span class="date">2021.09.14</span>
+                                <p>(주)창해에탄올, 적십자사 전북지사에 온누리상품권 100만원 기부</p>
+                                <a href="#">READ MORE</a>
+                            </li>
+                            <li data-aos="fade-up" data-aos-duration="3000" data-aos-delay="700">
+                                <span class="tnam">CSR활동</span>
+                                <span class="date">2020.12.09</span>
+                                <p>(주)창해에탄올 겨울맞이 난방용품 및 연료 지원</p>
+                                <a href="#">READ MORE</a>
+                            </li>
+                            <li>
+                                <span class="tnam">CSR활동</span>
+                                <span class="date">2019.12.02</span>
+                                <p>(주)창해에탄올,전주 연탄은행 통해 난방연료 및 용품 전달</p>
+                                <a href="#">READ MORE</a>
+                            </li>
+                            <li>
+                                <span class="tnam">CSR활동</span>
+                                <span class="date">2019.10.28</span>
+                                <p>(주)창해에탄올 관내 취약계층 25세대에 500만원 상당 물품지원</p>
+                                <a href="#">READ MORE</a>
+                            </li>
+                            <li>
+                                <span class="tnam">CSR활동</span>
+                                <span class="date">2017.11.29</span>
+                                <p>(주)창해에탄올,동서학동 활터마을 주민 위해 연탄 1800장·등유·쌀 전달</p>
+                                <a href="#">READ MORE</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="stkmain" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="900">
+                        <div class="stock">
+                            <a href="#">
+                                <dl>
+                                    <dt class="stk">주가<br class="pc">정보</dt>
+                                    <strong>12,750</strong>
+                                    <dd>
+                                        <ul>
+                                            <li>
+                                                <dl>
+                                                    <dt>등락폭(원)</dt>
+                                                    <dd>0</dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt>등락률(%)</dt>
+                                                    <dd>0.00</dd>
+                                                </dl>
+                                            </li>
+                                        </ul>
+                                    </dd>
+                                </dl>
+                            </a>
+                        </div>
+                        <div class="stcbtn">
+                            <a href="#">공시정보</a>
+                            <a href="#">재무정보</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section6">
+            <div class="wrapsec">
+                <div class="sec6tit cl">
+                    <h3>CHANGHAE OFFICE</h3>
+                    <div class="kmap">
+                        <ul class="map">
+                            <li class="cb">
+                                <a href="#">본사</a>
+                            </li>
+                            <li>
+                                <a href="#">서울사무소</a>
+                            </li>
+                        </ul>
+                        <div class="kgd">
+                            <iframe class="gm1 mapon" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6467.80924280026!2d127.07618083620002!3d35.85134221728524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35703c8829f508a7%3A0xe30465563aa579f5!2zKOyjvCnssL3tlbTsl5Dtg4TsmKw!5e0!3m2!1sko!2skr!4v1661275772762!5m2!1sko!2skr" width="100%" height="240" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe class="gm2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d498.4727358038312!2d127.04012384940935!3d37.50545355296454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca4078c0b2a3d%3A0x3f8e6ab5048dd86!2zKOyjvCnssL3tlbTsl5Dtg4TsmKwg7ISc7Jq47IKs66y07IaM!5e0!3m2!1sko!2skr!4v1661306331277!5m2!1sko!2skr" width="100%" height="240" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                    <div class="hcp">
+                        <p>관계사</p>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <div class="hcpbox">
+                                        <img src="images1/img_office01.png" alt="창해이엔지" class="pc">
+                                        <img src="images1/img_office01_mo.png" alt="창해이엔지" class="mob">
+                                        <strong>창해이엔지</strong>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images1/img_office02.png" alt="우리에너지" class="pc">
+                                    <img src="images1/img_office02_mo.png" alt="우리에너지" class="mob">
+                                    <strong>우리에너지</strong>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images1/img_office03.png" alt="창해베트남" class="pc">
+                                    <img src="images1/img_office03_mo.png" alt="창해베트남" class="mob">
+                                    <strong>창해베트남</strong>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <footer class="fp1 pc">
+                <div class="wrapsec">
+                    <div class="footertop">
+                        <ul>
+                            <li>
+                                <b>본사</b>
+                                <span>전라북도 전주시 덕진구 원만성로 15</span>
+                            </li>
+                            <li>
+                                <b>TEL</b>
+                                <span>063-214-7800</span>
+                            </li>
+                            <li>
+                                <b>FAX</b>
+                                <span>063-214-7805</span>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <b>서울사무소</b>
+                                <span>서울특별시 강남구 언주로 97길 8 창해빌딩 5F</span>
+                            </li>
+                            <li>
+                                <b>TEL</b>
+                                <span>02-552-4531</span>
+                            </li>
+                            <li>
+                                <b>FAX</b>
+                                <span>02-538-0806</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footerbt">
+                        <span>Copyright ⓒ 2021 Chang-Hae. All Rights Reserved.
+                        </span>
+                        <ul>
+                            <li>
+                                <a href="#">내부정보관리규정</a>
+                            </li>
+                            <li>
+                                <a href="#">윤리규정</a>
+                            </li>
+                            <li>
+                                <a href="#">개인정보처리방침</a>
+                            </li>
+                            <li>
+                                <a href="#">이메일주소무단수집거부</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="upbtn fm"></a>
+                    <a href="#" class="smg">사이버 신문고</a>
+                </div>
+            </footer>
+        </div>
+        <div class="section mob" id="section7">
+            <div class="wrapsec">
+                <footer class="fp1">
+                    <div class="wrapsec">
+                        <div class="footertop">
+                            <ul>
+                                <li>
+                                    <b>본사</b>
+                                    <span>전라북도 전주시 덕진구 원만성로 15</span>
+                                </li>
+                                <li>
+                                    <b>TEL</b>
+                                    <span>063-214-7800</span>
+                                </li>
+                                <li>
+                                    <b>FAX</b>
+                                    <span>063-214-7805</span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <b>서울사무소</b>
+                                    <span>서울특별시 강남구 언주로 97길 8 창해빌딩 5F</span>
+                                </li>
+                                <li>
+                                    <b>TEL</b>
+                                    <span>02-552-4531</span>
+                                </li>
+                                <li>
+                                    <b>FAX</b>
+                                    <span>02-538-0806</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footerbt">
+                            <span>Copyright ⓒ 2021 Chang-Hae. All Rights Reserved.
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="#">내부정보관리규정</a>
+                                </li>
+                                <li>
+                                    <a href="#">윤리규정</a>
+                                </li>
+                                <li>
+                                    <a href="#">개인정보처리방침</a>
+                                </li>
+                                <li>
+                                    <a href="#">이메일주소무단수집거부</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="#" class="upbtn fm"></a>
+                        <a href="#" class="smg">사이버 신문고</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- 스크립트 -->
+    
+    <script src="js/mainpage.js"></script>
+    
+    <!-- aos -->
+    <script>
+        AOS.init({
+            offset: 200,
+        })
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
